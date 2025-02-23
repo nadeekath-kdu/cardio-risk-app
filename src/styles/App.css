@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.home-container {
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+.card {
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.heart-image {
+    width: 100%;
+    max-width: 160px;
+    display: block;
+    margin: 0 auto;
+}
+
+.multi-step-form {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

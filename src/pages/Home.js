@@ -1,40 +1,31 @@
 import React, { useState } from "react";
-import PredictionForm from "../components/PredictionForm";
-import PredictionResult from "../components/PredictionResult";
-import axios from "axios";
+import MultiStepForm from "../components/MultiStepForm";
+import Prediction from "../components/Prediction";
+import heartImage from "../assets/heart1.jpg";  // Import Image
+import "../styles/App.css";
 
 const Home = () => {
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const [prediction, setPrediction] = useState(null);
 
-  const handleSubmit = async (formData) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await axios.post(
-        "https://cardio-risk-prediction.onrender.com/predict",
-        formData
-      );
-      setPrediction(response.data.risk_prediction);
-    } catch (error) {
-      console.error("Error:", error);
-      setError("Failed to fetch prediction. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
-      <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
-        Cardiovascular Risk Prediction
-      </h2>
-      <PredictionForm onSubmit={handleSubmit} loading={loading} />
-      <PredictionResult prediction={prediction} error={error} />
-    </div>
-  );
+    return (
+        <div className="container home-container">
+            <div className="card shadow-sm p-4">
+                <div className="row align-items-center">
+                    {/* Image on the left */}
+                    <div className="col-md-3 text-center">
+                        <img src={heartImage} alt="Heart Health" className="heart-image" />
+                    </div>
+                    
+                    {/* Form on the right */}
+                    <div className="col-md-9">
+                        {/* <h3 className="text-center mb-3">Cardiovascular Risk Prediction</h3> */}
+                        <MultiStepForm setPrediction={setPrediction} />
+                        <Prediction prediction={prediction} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Home;
